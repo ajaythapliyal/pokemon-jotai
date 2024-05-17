@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client'
 
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 
 import App from './App.jsx'
 import './normalize.css'
 import './styles.css'
+import { PokemonList } from './Pokemon/PokemonList.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,9 +19,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'pokemon',
-        element: null
+        element: <PokemonList></PokemonList>
+      },
+      {
+        path: '',
+        element: <Navigate to={'pokemon'}></Navigate>
       }
-    ]
+    ],
   }
 ])
 
