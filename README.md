@@ -1,6 +1,6 @@
 # pokemon-jotai
 
-Just a small toy pokemon app, uses [Jotai](https://github.com/pmndrs/jotai) as global state manager, [React95](https://github.com/react95-io/React95) for Windows 95 UX and [react-virtuoso](https://github.com/petyosi/react-virtuoso) for infinite scrolling.
+Just a small toy pokemon app, uses [Jotai](https://github.com/pmndrs/jotai) as global state manager, [React95](https://github.com/react95-io/React95) for Windows 95 UX and [react-virtuoso](https://github.com/petyosi/react-virtuoso) for list virtualization & infinite scrolling.
 
 Link : [pokemon-jotai.vercel.app](pokemon-jotai.vercel.app)
 
