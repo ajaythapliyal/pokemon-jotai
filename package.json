@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
+    "react-virtuoso": "^4.7.10",
     "react95": "^4.0.0",
     "styled-components": "^6.1.11"
   },

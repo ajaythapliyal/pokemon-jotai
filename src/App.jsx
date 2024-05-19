@@ -35,7 +35,6 @@ const Title = styled.span`
 const Main = styled.main`
   background: ${({ theme }) => theme.desktopBackground};
   min-height : 100vh;
-  padding-inline : 1rem;
 `
 
 const PlaceHolder = styled.div`

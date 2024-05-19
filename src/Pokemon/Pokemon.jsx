@@ -13,7 +13,7 @@ const FrameContainer = styled.div`
 
 const SpacedFrame = styled(Frame)`
     padding : 1rem;
-    margin : 1rem
+    margin : 1rem;
 `
 
 export const Pokemon = ({name, url})=> 

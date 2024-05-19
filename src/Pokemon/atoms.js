@@ -18,7 +18,7 @@ export const pokemonAtom = atom(
     (get)=> Array.from(get(_pokemonAtom).values()), 
     async (get, set, newVal) => {
         set(isPokemonFetching, true)
-        await delay(1500)
+        await delay(500)
         const cachedPokemons = get(_pokemonAtom)
         const pokemonIdSet = await get(pokemonIdSetAtom)
         const cachedPokemonIds = cachedPokemons.keys()
