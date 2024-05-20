@@ -1,9 +1,8 @@
 import { useAtom, useAtomValue } from "jotai"
 import { Pokemon } from "./Pokemon";
-import {  Suspense, useCallback, useEffect, forwardRef } from "react";
-import {  isPokemonFetching, pokemonAtom } from "./atoms";
+import {  useCallback, useEffect, forwardRef } from "react";
+import {   isPokemonNextPageAvailableAtom, pokemonAtom } from "./atoms";
 import styled from "styled-components";
-import { Hourglass } from "react95";
 import { Loading } from "../Loading";
 import { VirtuosoGrid } from "react-virtuoso";
 
@@ -23,7 +22,7 @@ const ListContent = styled.div`
   margin-inline : 1rem;
 `
 
-const gridComponents = {
+const gridComponents = (loader)=> ({
     List: forwardRef(({ style, children, ...props }, ref) => (
       <ListContent
         ref={ref}
@@ -34,19 +33,26 @@ const gridComponents = {
       </ListContent>
     )),
     Item: ({ children, ...props }) => <div{...props}>{children}</div>,
-    Footer : ()=> <LoaderContainer><Loading/></LoaderContainer>
-  };
+    Footer : ()=> loader
+  });
 
 export const PokemonList = ()=>{
     const [pokemons, fetchPokemons] = useAtom(pokemonAtom);
+    const {isNextPageAvailable} = useAtomValue(isPokemonNextPageAvailableAtom)
 
     useEffect(()=>{
+      if(!pokemons.length){
         fetchPokemons()
-    }, [])
+      }
+    }, [pokemons.length])
 
     const endReached = useCallback(()=>{
-        fetchPokemons();
-    })
+        if(isNextPageAvailable){
+          fetchPokemons();
+        }
+    }, [isNextPageAvailable])
+
+    const loader = isNextPageAvailable ? <LoaderContainer><Loading></Loading></LoaderContainer> : null
 
     if(pokemons.length === 0){
       return <Loading/>
@@ -57,7 +63,7 @@ export const PokemonList = ()=>{
         useWindowScroll
         endReached={endReached}
         data={pokemons}
-        components={gridComponents}
+        components={gridComponents(loader)}
         itemContent={(index, pokemon)=> <Pokemon name={pokemon.name} url={pokemon.url}></Pokemon>}
     ></VirtuosoGrid>
 }

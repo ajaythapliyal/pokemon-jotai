@@ -11,6 +11,7 @@ import App from './App.jsx'
 import './normalize.css'
 import './styles.css'
 import { PokemonList } from './Pokemon/PokemonList.jsx';
+import { Home } from './Home.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'pokemon',
-        element: <PokemonList></PokemonList>
+        element: <Home></Home>
       },
       {
         path: '',
